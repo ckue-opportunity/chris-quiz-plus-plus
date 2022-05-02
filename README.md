@@ -1,4 +1,5 @@
-# Docker for local web development: a basic LEMP stack (Linux, Nginx, MySQL, PHP)
+# Quiz++ (Nginx, MySQL, PHP)
+Quiz example that get's all its question and answer data from phpMySQL.
 
 ## Content
 
@@ -13,7 +14,7 @@ This branch contains a basic LEMP stack running on Docker and orchestrated by Do
 
 Make sure [Docker Desktop for Mac or PC](https://www.docker.com/products/docker-desktop) is installed and running, or head [over here](https://docs.docker.com/install/) if you are a Linux user. You will also need a terminal running [Git](https://git-scm.com/).
 
-This setup also uses localhost's port 8000 for Nginx, so make sure it is available.
+This setup also uses localhost's port 8001 for Nginx, so make sure it is available.
 
 ## Directions of use
 
