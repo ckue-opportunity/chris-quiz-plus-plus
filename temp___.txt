@@ -1,0 +1,20 @@
+<script>
+    function previousQuestion() {
+        // Calculate previous question index.
+        let element1 = document.getElementById("lastQuestionIndex");
+        let prevousQuestionIndex = parseInt(element1.value) - 1;
+        if (prevousQuestionIndex < 0) prevousQuestionIndex = 0;
+
+        // Set the nextQuestionIndex to the previous question.
+        let element2 = document.getElementById("nextQuestionIndex");
+        element2.value = prevousQuestionIndex;
+
+        /*
+            Remove the action from form - otherwise submitting will
+            interfere and we land on the result.php, instead of the
+            previous page.
+        */
+        let element3 = document.getElementById("questionForm");
+        element3.action = '';
+    }
+</script>

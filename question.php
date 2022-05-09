@@ -45,7 +45,7 @@
 <h3>Frage <?php echo $currentQuestionIndex; ?></h3>
 <p><?php echo $questions[$currentQuestionIndex]['text']; ?></p>
 
-<form <?php if ($currentQuestionIndex + 1 >= count($questions)) echo 'action="result.php" '; ?>method="post">
+<form id="questionForm" <?php if ($currentQuestionIndex + 1 >= count($questions)) echo 'action="result.php" '; ?>method="post">
     <?php
         $answers = $questions[$currentQuestionIndex]['answers'];
         $isMultipleChoice = $questions[$currentQuestionIndex]['isMultipleChoice'];
@@ -74,13 +74,35 @@
     ?>
 
     <!-- Hidden Fields -->
-    <input type="hidden" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
-    <input type="hidden" name="nextQuestionIndex" value="<?php echo $currentQuestionIndex + 1; ?>">
+    <input type="hidden" id="lastQuestionIndex" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
+    <input type="hidden" id="nextQuestionIndex" name="nextQuestionIndex" value="<?php echo $currentQuestionIndex + 1; ?>">
     <input type="hidden" name="maxPoints" value="<?php echo $maxPoints; ?>">
     <!-- END Hidden Fields -->
 
     <p class="warning"></p>
+    <input type="submit" onclick="return previousQuestion();" value="Previous Question">
     <input type="submit">
 </form>
+
+<script>
+    function previousQuestion() {
+        // Calculate previous question index.
+        let element1 = document.getElementById("lastQuestionIndex");
+        let prevousQuestionIndex = parseInt(element1.value) - 1;
+        if (prevousQuestionIndex < 0) prevousQuestionIndex = 0;
+
+        // Set the nextQuestionIndex to the previous question.
+        let element2 = document.getElementById("nextQuestionIndex");
+        element2.value = prevousQuestionIndex;
+
+        /*
+            Remove the action from form - otherwise submitting will
+            interfere and we land on the result.php, instead of the
+            previous page.
+        */
+        let element3 = document.getElementById("questionForm");
+        element3.action = '';
+    }
+</script>
 
 <?php include 'php/footer.php'; ?>
